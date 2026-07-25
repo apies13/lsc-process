@@ -10,7 +10,7 @@
 ### UI Previews
 
 <div align="center">
-  <img src="https://i.postimg.cc/vH08519X/image.png" alt="Modern Style (V1)" width="45%" />
+  <img src="https://i.ibb.co.com/LDMV2mD2/Screenshot-2026-07-25-084522.png" alt="Modern Style (V1)" width="45%" />
   <img src="https://i.ibb.co.com/201CB28L/Screenshot-2026-07-25-083301.png" alt="Oldschool Style (V2)" width="45%" />
   <br> 
   <i>Left: Modern Layout (V1) | Right: Classic Box Layout (V2)</i>
@@ -67,39 +67,64 @@ LSC Process Bar is a dynamic, lightweight, and elegant textdraw-based loading an
 ### Usage Reference
 
 ```pawn
-CMD:miner(playerid, params[])
+CMD:testprog1(playerid, params[])
 {
-    if (GetPVarInt(playerid, "Mining") == 1) 
-        return SendClientMessage(playerid, -1, "System: A background process is already running.");
-
-    SetPVarInt(playerid, "Mining", 1);
+    if (GetPVarInt(playerid, "pTestProg1") == 1)
+        return SendClientMessage(playerid, 0xFF0000FF, "ERROR: {FFFFFF}Kamu sedang mengetes progress bar V1!");
+        
+    SetPVarInt(playerid, "pTestProg1", 1);
     ApplyAnimation(playerid, "CHAINSAW", "WEAPON_csaw", 4.1, 1, 0, 0, 1, 0, 1);
     
-    // Antarmuka: ProcessV1 or ProcessV2 (playerid, duration_seconds, "Module Description", "Module Header");
-    ProcessV2(playerid, 10, "Mining Stones..", "Mining Job");
+     // UI: ProcessV1 or ProcessV2 (playerid, duration_seconds, "Module Description", "Module Header");
+    ProcessV1(playerid, 10, "Menambang_Batu..", "Test_Miner_V1");
     return 1;
 }
 
-// Global hooks natively executed upon interaction completion or manual abort
+CMD:testprog2(playerid, params[])
+{
+    if (GetPVarInt(playerid, "pTestProg2") == 1)
+        return SendClientMessage(playerid, 0xFF0000FF, "ERROR: {FFFFFF}Kamu sedang mengetes progress bar V2!");
+        
+    SetPVarInt(playerid, "pTestProg2", 1);
+    ApplyAnimation(playerid, "CHAINSAW", "WEAPON_csaw", 4.1, 1, 0, 0, 1, 0, 1);
+    
+     // UI: ProcessV1 or ProcessV2 (playerid, duration_seconds, "Module Description", "Module Header");
+    ProcessV2(playerid, 10, "Menambang_Batu..", "Test_Miner_V2");
+    return 1;
+}
+
+// Callbacks
 
 public OnLSCProgbarFinish(playerid)
 {
-    if (GetPVarInt(playerid, "Mining") == 1)
+    if (GetPVarInt(playerid, "pTestProg1") == 1)
     {
         ClearAnimations(playerid);
-        SendClientMessage(playerid, 0x00FF00FF, "Success: Extracted 1x Stone.");
-        DeletePVar(playerid, "Mining");
+        SendClientMessage(playerid, 0x00FF00FF, "SYSTEM: {FFFFFF}Progress bar V1 selesai! 1x Batu didapatkan!");
+        DeletePVar(playerid, "pTestProg1");
+    }
+    else if (GetPVarInt(playerid, "pTestProg2") == 1)
+    {
+        ClearAnimations(playerid);
+        SendClientMessage(playerid, 0x00FF00FF, "SYSTEM: {FFFFFF}Progress bar V2 selesai! 1x Besi didapatkan!");
+        DeletePVar(playerid, "pTestProg2");
     }
     return 1;
 }
 
 public OnLSCProgbarCancel(playerid)
 {
-    if (GetPVarInt(playerid, "Mining") == 1)
+    if (GetPVarInt(playerid, "pTestProg1") == 1)
     {
         ClearAnimations(playerid);
-        SendClientMessage(playerid, 0xFF0000FF, "Terminated: Operation manually aborted.");
-        DeletePVar(playerid, "Mining");
+        SendClientMessage(playerid, 0xFF0000FF, "SYSTEM: {FFFFFF}Progress bar V1 dibatalkan!");
+        DeletePVar(playerid, "pTestProg1");
+    }
+    else if (GetPVarInt(playerid, "pTestProg2") == 1)
+    {
+        ClearAnimations(playerid);
+        SendClientMessage(playerid, 0xFF0000FF, "SYSTEM: {FFFFFF}Progress bar V2 dibatalkan!");
+        DeletePVar(playerid, "pTestProg2");
     }
     return 1;
 }
@@ -147,39 +172,64 @@ sampctl package install apies13/lsc-process
 ### Referensi Dasar Penggunaan
 
 ```pawn
-CMD:miner(playerid, params[])
+CMD:testprog1(playerid, params[])
 {
-    if (GetPVarInt(playerid, "Mining") == 1) 
-        return SendClientMessage(playerid, -1, "Kesalahan: Sistem mendeteksi adanya proses latar belakang yang masih aktif.");
-
-    SetPVarInt(playerid, "Mining", 1);
+    if (GetPVarInt(playerid, "pTestProg1") == 1)
+        return SendClientMessage(playerid, 0xFF0000FF, "ERROR: {FFFFFF}Kamu sedang mengetes progress bar V1!");
+        
+    SetPVarInt(playerid, "pTestProg1", 1);
     ApplyAnimation(playerid, "CHAINSAW", "WEAPON_csaw", 4.1, 1, 0, 0, 1, 0, 1);
     
-    // Pilih: ProcessV1 atau ProcessV2 (playerid, durasi_detik, "Deskripsi Tugas", "Judul Header");
-    ProcessV2(playerid, 10, "Menambang Batu..", "Pekerjaan Tambang");
+     // UI: ProcessV1 or ProcessV2 (playerid, duration_seconds, "Module Description", "Module Header");
+    ProcessV1(playerid, 10, "Menambang_Batu..", "Test_Miner_V1");
     return 1;
 }
 
-// Blocks Event (Sistem otomatis melempar sinyal callback kemari)
+CMD:testprog2(playerid, params[])
+{
+    if (GetPVarInt(playerid, "pTestProg2") == 1)
+        return SendClientMessage(playerid, 0xFF0000FF, "ERROR: {FFFFFF}Kamu sedang mengetes progress bar V2!");
+        
+    SetPVarInt(playerid, "pTestProg2", 1);
+    ApplyAnimation(playerid, "CHAINSAW", "WEAPON_csaw", 4.1, 1, 0, 0, 1, 0, 1);
+    
+     // UI: ProcessV1 or ProcessV2 (playerid, duration_seconds, "Module Description", "Module Header");
+    ProcessV2(playerid, 10, "Menambang_Batu..", "Test_Miner_V2");
+    return 1;
+}
+
+// Callbacks
 
 public OnLSCProgbarFinish(playerid)
 {
-    if (GetPVarInt(playerid, "Mining") == 1)
+    if (GetPVarInt(playerid, "pTestProg1") == 1)
     {
         ClearAnimations(playerid);
-        SendClientMessage(playerid, 0x00FF00FF, "Berkas: Operasi penambangan selesai. +1 Batu Galian ditambahkan.");
-        DeletePVar(playerid, "Mining");
+        SendClientMessage(playerid, 0x00FF00FF, "SYSTEM: {FFFFFF}Progress bar V1 selesai! 1x Batu didapatkan!");
+        DeletePVar(playerid, "pTestProg1");
+    }
+    else if (GetPVarInt(playerid, "pTestProg2") == 1)
+    {
+        ClearAnimations(playerid);
+        SendClientMessage(playerid, 0x00FF00FF, "SYSTEM: {FFFFFF}Progress bar V2 selesai! 1x Besi didapatkan!");
+        DeletePVar(playerid, "pTestProg2");
     }
     return 1;
 }
 
 public OnLSCProgbarCancel(playerid)
 {
-    if (GetPVarInt(playerid, "Mining") == 1)
+    if (GetPVarInt(playerid, "pTestProg1") == 1)
     {
         ClearAnimations(playerid);
-        SendClientMessage(playerid, 0xFF0000FF, "Interupsi: Eksekusi dibatalkan secara manual oleh pemain.");
-        DeletePVar(playerid, "Mining");
+        SendClientMessage(playerid, 0xFF0000FF, "SYSTEM: {FFFFFF}Progress bar V1 dibatalkan!");
+        DeletePVar(playerid, "pTestProg1");
+    }
+    else if (GetPVarInt(playerid, "pTestProg2") == 1)
+    {
+        ClearAnimations(playerid);
+        SendClientMessage(playerid, 0xFF0000FF, "SYSTEM: {FFFFFF}Progress bar V2 dibatalkan!");
+        DeletePVar(playerid, "pTestProg2");
     }
     return 1;
 }
@@ -191,7 +241,6 @@ public OnLSCProgbarCancel(playerid)
 
 <div align="center">
   <b>Credits</b><br>
-  Textdraw Design V1 by <b>[kyomoto (@nosebluennt)(https://github.com/KyeeS)]</b><br>
-  Textdraw Design V2 by <b>[Apies (Founder of LSCRP)(https://github.com/apies13)]</b><br>
-  Logic & Architecture by <b>[Apies (Founder of LSCRP)(https://github.com/apies13)]</b>
+  Textdraw Design V1 by <b>[kyomoto](https://github.com/KyeeS)</b><br>
+  Textdraw Design V2 & Development by <b>[Apies](https://github.com/apies13)</b><br>
 </div>
