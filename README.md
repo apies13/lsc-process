@@ -10,8 +10,8 @@
 ### UI Previews
 
 <div align="center">
-  <img src="https://i.ibb.co.com/LDMV2mD2/Screenshot-2026-07-25-084522.png" alt="Modern Style (V1)" width="45%" />
-  <img src="https://i.ibb.co.com/201CB28L/Screenshot-2026-07-25-083301.png" alt="Oldschool Style (V2)" width="45%" />
+  <img src="https://raw.githubusercontent.com/apies13/lsc-process/refs/heads/main/LSC-PROCESSV1.png" alt="Modern Style (V1)" width="45%" />
+  <img src="https://raw.githubusercontent.com/apies13/lsc-process/refs/heads/main/KONTROL.png" alt="Oldschool Style (V2)" width="45%" />
   <br> 
   <i>Left: Modern Layout (V1) | Right: Classic Box Layout (V2)</i>
 </div>
