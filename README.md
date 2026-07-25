@@ -191,7 +191,7 @@ public OnLSCProgbarCancel(playerid)
 
 <div align="center">
   <b>Credits</b><br>
-  Textdraw Design V1 by <b>[kyomoto (nosebluennt)](https://github.com/KyeeS)</b><br>
-  Textdraw Design V2 by <b>[Apies (Founder of LSCRP)](https://github.com/apies13)</b><br>
-  Logic & Architecture by <b>[Apies (Founder of LSCRP)](https://github.com/apies13)</b>
+  Textdraw Design V1 by <b>[kyomoto (@nosebluennt)(https://github.com/KyeeS)]</b><br>
+  Textdraw Design V2 by <b>[Apies (Founder of LSCRP)(https://github.com/apies13)]</b><br>
+  Logic & Architecture by <b>[Apies (Founder of LSCRP)(https://github.com/apies13)]</b>
 </div>
